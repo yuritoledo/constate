@@ -2,10 +2,11 @@
 import * as React from "react";
 import constate from "constate";
 
-function useCounter({ initialCount = 0 } = {}) {
+function useCounter<T>({ initialCount = 0 } = {}) {
   const [count, setCount] = React.useState(initialCount);
+  const [x, setX] = React.useState<T[]>([]);
   const increment = React.useCallback(() => setCount(c => c + 1), []);
-  return { count, increment };
+  return { count, increment, x, setX };
 }
 
 const [CounterProvider, useCount, useIncrement] = constate(
