@@ -5,7 +5,7 @@ const isDev = process.env.NODE_ENV !== "production";
 
 const NO_PROVIDER = "_NP_" as any;
 
-function createUseContext(context: React.Context<any>): any {
+function createUseContext(context: React.Context<T>): T {
   return () => {
     const value = React.useContext(context);
     if (isDev && value === NO_PROVIDER) {
@@ -44,7 +44,7 @@ function constate<P, V, S extends Array<SplitValueFunction<V>>>(
   }
 
   // const useCounterContext = constate(...)
-  const useContext: any = () => {
+  const useContext: V = () => {
     if (isDev) {
       // eslint-disable-next-line no-console
       console.warn(
